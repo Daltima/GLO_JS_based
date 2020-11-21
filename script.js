@@ -7,4 +7,4 @@ let period;
 
 alert("lesson1");
 
-console.log('start');
+console.log('URRRAA');
