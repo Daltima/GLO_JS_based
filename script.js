@@ -5,6 +5,6 @@ let deposit;
 let mission;
 let period; 
 
-alert("lesson1");
+alert("lesson01");
 
 console.log('start');
