@@ -6,5 +6,4 @@ let mission;
 let period; 
 
 alert("lesson1");
-
 console.log('start');
