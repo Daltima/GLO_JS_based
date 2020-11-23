@@ -15,5 +15,5 @@ console.log('Цель заработать '+ mission + ' гривен.');
 console.log(addExpenses.toLowerCase());
 console.log(addExpenses.split(', '));
 
-let budgetDay = 1000;
+let budgetDay = money/30;
 console.log(budgetDay);
