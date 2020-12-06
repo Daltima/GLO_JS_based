@@ -35,7 +35,7 @@ let appData = {
         let sum = 0;
         let expenseName = {};
 
-        for(let i = 1; i < 3; i++) {
+        for(let i = 0; i < 2; i++) {
            expenseName = prompt('Введите обязательную ' + i + '-ю статью расходов?');                    
     
             do { 
