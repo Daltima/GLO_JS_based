@@ -2,7 +2,7 @@
 
 const collections = document.querySelectorAll('.books'),
     book = document.querySelectorAll('.book'),
-    bookH2 = document.querySelectorAll('h2'),
+    bookA = document.querySelectorAll('a'),
     adv = document.querySelectorAll('.adv');
     
 collections[0].prepend(book[1]);
@@ -10,8 +10,9 @@ collections[0].append(book[2]);
 book[3].before(book[4]);
 
 document.body.style.backgroundImage = 'url(./image/adv.jpg)';
+console.log('bookA: ', bookA);
+bookA[4].textContent = 'Книга 3. this и Прототипы Объектов';
 
-bookH2[4].textContent = 'Книга 3. this и Прототипы Объектов';
 adv[0].remove();
 
 const bookLi = document.getElementsByTagName('li')[55],
