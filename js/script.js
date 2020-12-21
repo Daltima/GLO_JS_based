@@ -199,26 +199,4 @@ expensesPlus.addEventListener('click', appData.addExpensesBlock);
 
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 
-periodSelect.addEventListener('change', appData.period);
-
-
-
-// if (appData.getTargetMonth() > 0) {
-//     console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев');
-// } else {
-//     console.log('Цель не будет достигнута');
-// }
-
-appData.getInfoDeposit();
-
-// console.log("Наша программа включает в себя данные: ");
-// for(let key in appData) {
-
-//         console.log(key + ':' + appData[key]);
-// }
-
-// console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcPeriod());
-
-/*Вывожу строку из элементов массива appData.addExpenses с разделителем ', ',
- где каждый элемент массива начинается с заглавной буквы*/
-// console.log(appData.addExpenses.map(n => `${n[0].toUpperCase()}${n.slice(1)}`).join(', '));
+periodSelect.addEventListener('input', appData.period);
