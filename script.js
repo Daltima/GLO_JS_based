@@ -1,23 +1,23 @@
 'use strict';
 
-let money = +prompt('Ваш месячный доход?', 50000),
-income = 'фриланс',
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
-'такси, коммунальные, питание, обучение'),
-deposit = confirm('Есть ли у вас депозит в банке?');
+const money = +prompt('Ваш месячный доход?', 50000),
+        income = 'фриланс',
+        addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
+                                'такси, коммунальные, питание, обучение'),
+        deposit = confirm('Есть ли у вас депозит в банке?'),
 
-const mission = 150000,
-period = 12; 
+        mission = 150000,
+        period = 12,
 
-let expenses1 = prompt('Введите обязательную статью расходов?', 'коммунальные'),
-amount1 = +prompt('Во сколько это обойдется?', 5400),
+        expenses1 = prompt('Введите обязательную статью расходов?', 'коммунальные'),
+        amount1 = +prompt('Во сколько это обойдется?', 5400),
 
-expenses2 = prompt('Введите обязательную статью расходов?', 'питание'),
-amount2 = +prompt('Во сколько это обойдется?', 21600),
+        expenses2 = prompt('Введите обязательную статью расходов?', 'питание'),
+        amount2 = +prompt('Во сколько это обойдется?', 21600),
 
-budgetMonth = money - amount1 - amount2,
-missionPeriod = Math.ceil(mission/budgetMonth),
-budgetDay = Math.floor(budgetMonth/30);
+        budgetMonth = money - amount1 - amount2,
+        missionPeriod = Math.ceil(mission/budgetMonth),
+        budgetDay = Math.floor(budgetMonth/30);
 
 console.log(typeof money, typeof income, typeof deposit);
 console.log(addExpenses.length);
