@@ -14,6 +14,9 @@ const money = +prompt('Ваш месячный доход?', 50000),
     showTypeOf = function(data) {
         console.log(data, typeof(data));
     },
+    getAccumulatedMonth = function() {
+        return money - amount1 - amount2;
+    },
     accumulatedMonth = getAccumulatedMonth(),
     budgetDay = Math.floor(accumulatedMonth/30),
 
@@ -27,27 +30,22 @@ const money = +prompt('Ваш месячный доход?', 50000),
         } else {
             return ('Что-то пошло не так');
         }
-    };
+    },
+    getExpensesMonth = function() {
+        return amount1 + amount2;
+    },
+    
+    getTargetMonth = function(){
+        return mission/accumulatedMonth;
+    },
+    missionPeriod = Math.ceil(getTargetMonth());
 
 
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
     
-function getExpensesMonth() {
-    return amount1 + amount2;
-}
-
-function getAccumulatedMonth() {
-    return money - amount1 - amount2;
-}
-
-function getTargetMonth() {
-    return mission/accumulatedMonth;
-}
-const missionPeriod = Math.ceil(getTargetMonth());
-
-console.log(addExpenses.split(', '));
+console.log(addExpenses.toLowerCase().split(', '));
 console.log(getExpensesMonth());
 console.log('Бюджет на месяц: ' + accumulatedMonth);
 console.log('Бюджет на день ' + budgetDay);
