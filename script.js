@@ -30,10 +30,6 @@ function getAccumulatedMonth() {
     return money - amount1 - amount2;
 }
 
-function getTargetMonth() {
-    return mission/accumulatedMonth;
-}
-
 
 let accumulatedMonth = getAccumulatedMonth(),
     budgetDay = Math.floor(accumulatedMonth/30),
@@ -47,8 +43,11 @@ let accumulatedMonth = getAccumulatedMonth(),
         } else {
             return ('Что-то пошло не так');
         }
-    },
-    missionPeriod = Math.ceil(getTargetMonth());
+    };
+    function getTargetMonth() {
+        return mission/accumulatedMonth;
+    }
+    const missionPeriod = Math.ceil(getTargetMonth());
 
 console.log(addExpenses.split(', '));
 console.log(getExpensesMonth());
