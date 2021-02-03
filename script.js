@@ -6,22 +6,26 @@ let isNumber = function(n) {
     money,
     expenses = [];
 
+const start = function() {
+
+    do {
+        money = prompt('Ваш месячный доход?', 1000);
+    }
+    while (!isNumber(money));
+
+    money = +money;
+
+};
+
+start();
+
 const income = 'фриланс',
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
     'такси, коммунальные, питание, обучение'),
     deposit = confirm('Есть ли у вас депозит в банке?'),
     mission = 150000,
     period = 12,
-    start = function() {
-
-        do {
-            money = prompt('Ваш месячный доход?', 1000);
-        }
-        while (!isNumber(money));
-
-        money = +money;
-
-    },
+    
     showTypeOf = function(data) {
         console.log(data, typeof(data));
     },
@@ -73,7 +77,6 @@ const income = 'фриланс',
     };
 
 
-start();
 
 if (getTargetMonth >= 0) {
     console.log('Цель будет достигнута за ' + getTargetMonth + ' месяцев');
