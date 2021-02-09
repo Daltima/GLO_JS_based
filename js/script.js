@@ -16,6 +16,7 @@ const buttonStart = document.getElementById('start'),
     additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
     incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
     targetMonthValue = document.getElementsByClassName('target_month-value')[0],
+    budgetMonthValue = document.getElementsByClassName('.budget_month-value')[0],
 
 //Получаем оставшиеся поля + range
     salaryAmount = document.querySelector('.salary-amount'),
@@ -26,7 +27,6 @@ const buttonStart = document.getElementById('start'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'),
-    budgetMonthValue = document.querySelector('.budget_month-value'),
     depositAmount =  document.querySelector('.deposit-amount'),
     depositPercent = document.querySelector('.deposit-percent');
     
