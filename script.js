@@ -67,7 +67,7 @@ const appData = {
                                
     
             do { 
-                sum = prompt('Во сколько обойдется  ' + (i + 1) + '-я статья расходов?', 500);
+                sum = +prompt('Во сколько обойдется  ' + (i + 1) + '-я статья расходов?', 500);
             }
             while (!isNumber(sum));
             
@@ -104,12 +104,12 @@ const appData = {
         if(appData.deposit){
 
             do { 
-                appData.percentDeposit = prompt('Какой годовой процент?', 10);
+                appData.percentDeposit = +prompt('Какой годовой процент?', 10);
             }
             while (!isNumber(appData.percentDeposit));
 
             do { 
-                appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+                appData.moneyDeposit = +prompt('Какая сумма заложена?', 10000);
             }
             while (!isNumber(appData.moneyDeposit));
         }
@@ -145,3 +145,4 @@ console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSavedMoney
 /*Вывожу строку из элементов массива appData.addExpenses с разделителем ', ',
  где каждый элемент массива начинается с заглавной буквы*/
 console.log(appData.addExpenses.map(n => `${n[0].toUpperCase()}${n.slice(1)}`).join(', '));
+console.log(appData);
