@@ -14,7 +14,7 @@ const start = function() {
 };
 start();
 
-let appData = {
+const appData = {
     income: {},
     addIncome: [],
     expenses: {},
@@ -36,10 +36,10 @@ let appData = {
             do { 
                 itemIncome = prompt('Какой у Вас есть дополнительный заработок?', 'Таксую');
             }
-            while (itemIncome.trim() === '' || isNumber(itemIncome));
+            while (isNumber(itemIncome) || itemIncome === null || itemIncome.trim() === '');
 
             do { 
-                cashIncome = prompt('Сколько в месяц Вы на этом зарабатываете?', 10000);
+                cashIncome = +prompt('Сколько в месяц Вы на этом зарабатываете?', 10000);
             }
             while (!isNumber(cashIncome));
              
@@ -51,7 +51,7 @@ let appData = {
             appData.addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
          'такси, коммунальные, питание, обучение');
         }
-        while (appData.addExpenses.trim() === '' || isNumber(appData.addExpenses));
+        while (isNumber(appData.addExpenses) || appData.addExpenses === null || appData.addExpenses.trim() === '');
         
         appData.addExpenses = appData.addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -61,13 +61,13 @@ let appData = {
 
         for(let i = 0; i < 2; i++) {
             do { 
-                expenseName = prompt('Введите обязательную ' + (i + 1) + '-ю статью расходов?');
+                expenseName = prompt('Введите обязательную ' + (i + 1) + '-ю статью расходов?', 'аренда' + (i + 1));
             }
-            while (expenseName.trim() === '' || isNumber(expenseName));
+            while (isNumber(expenseName) || expenseName === null || expenseName.trim() === '');
                                
     
             do { 
-                sum = prompt('Во сколько обойдется  ' + (i + 1) + '-я статья расходов?');
+                sum = prompt('Во сколько обойдется  ' + (i + 1) + '-я статья расходов?', 500);
             }
             while (!isNumber(sum));
             
