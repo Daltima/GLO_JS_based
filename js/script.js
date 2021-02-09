@@ -4,18 +4,18 @@
 const buttonStart = document.getElementById('start'),
 
 //Получаем кнопки "+"
-    buttonPlus1 = document.getElementsByTagName('button')[0],
-    buttonPlus2 = document.getElementsByTagName('button')[1],
+    incomePlus = document.getElementsByTagName('button')[0],
+    expensesPlus = document.getElementsByTagName('button')[1],
     checkBox = document.querySelector('#deposit-check'),//Получаем чекбокс (возле депозит)
-    inputField = document.querySelectorAll('.additional_income-item'),//Получаем поля ввода доходов
+    additionalIncomeItem = document.querySelectorAll('.additional_income-item'),//Получаем поля ввода доходов
 
 //Получаем правую сторону, кроме budget_month-value
-    dayValue = document.getElementsByClassName('budget_day-value'),
-    expMonthValue = document.getElementsByClassName('expenses_month-value'),
-    addIncomeValue = document.getElementsByClassName('additional_income-value'),
-    addExpensesValue = document.getElementsByClassName('additional_expenses-value'),
-    incomePeriodValue = document.getElementsByClassName('income_period-value'),
-    targetMonthValue = document.getElementsByClassName('target_month-value'),
+    budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+    expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+    additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+    additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+    incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+    targetMonthValue = document.getElementsByClassName('target_month-value')[0],
 
 //Получаем оставшиеся поля + range
     salaryAmount = document.querySelector('.salary-amount'),
@@ -23,10 +23,23 @@ const buttonStart = document.getElementById('start'),
     incomeTitle = document.querySelector('.income-title'),
     expensesAmount = document.querySelector('.expenses-amount'),
     expensesTitle = document.querySelector('.expenses-title'),
-    addExpensesItem = document.querySelector('.additional_expenses-item'),
+    additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'),
-    monthValue = document.querySelector('.budget_month-value');
+    budgetMonthValue = document.querySelector('.budget_month-value'),
+    depositAmount =  document.querySelector('.deposit-amount'),
+    depositPercent = document.querySelector('.deposit-percent');
+    
+
+    console.log('budgetDayValue: ', budgetDayValue);
+    console.log('expensesMonthValue: ', expensesMonthValue);
+    console.log('additionalIncomeValue: ', additionalIncomeValue);
+    console.log('additionalExpensesValue: ', additionalExpensesValue);
+    console.log('incomePeriodValue: ', incomePeriodValue);
+    console.log('targetMonthValue: ', targetMonthValue);
+    console.log('depositAmount: ', depositAmount);
+    console.log('depositPercent: ', depositPercent);
+    
 
 
 
@@ -66,10 +79,10 @@ let appData = {
             do { 
                 itemIncome = prompt('Какой у Вас есть дополнительный заработок?', 'Таксую');
             }
-            while (itemIncome.trim() === '' || isNumber(itemIncome));
+            while (isNumber(itemIncome) || itemIncome === null || itemIncome.trim() === '');
 
             do { 
-                cashIncome = prompt('Сколько в месяц Вы на этом зарабатываете?', 10000);
+                cashIncome = +prompt('Сколько в месяц Вы на этом зарабатываете?', 10000);
             }
             while (!isNumber(cashIncome));
              
@@ -81,7 +94,7 @@ let appData = {
             appData.addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
          'такси, коммунальные, питание, обучение');
         }
-        while (appData.addExpenses.trim() === '' || isNumber(appData.addExpenses));
+        while (isNumber(appData.addExpenses) || appData.addExpenses === null || appData.addExpenses.trim() === '');
         
         appData.addExpenses = appData.addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -91,13 +104,13 @@ let appData = {
 
         for(let i = 0; i < 2; i++) {
             do { 
-                expenseName = prompt('Введите обязательную ' + (i + 1) + '-ю статью расходов?');
+                expenseName = prompt('Введите обязательную ' + (i + 1) + '-ю статью расходов?', 'аренда' + (i + 1));
             }
-            while (expenseName.trim() === '' || isNumber(expenseName));
+            while (isNumber(expenseName) || expenseName === null || expenseName.trim() === '');
                                
     
             do { 
-                sum = prompt('Во сколько обойдется  ' + (i + 1) + '-я статья расходов?');
+                sum = +prompt('Во сколько обойдется  ' + (i + 1) + '-я статья расходов?', 5000);
             }
             while (!isNumber(sum));
             
@@ -134,12 +147,12 @@ let appData = {
         if(appData.deposit){
 
             do { 
-                appData.percentDeposit = prompt('Какой годовой процент?', 10);
+                appData.percentDeposit = +prompt('Какой годовой процент?', 10);
             }
             while (!isNumber(appData.percentDeposit));
 
             do { 
-                appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+                appData.moneyDeposit = +prompt('Какая сумма заложена?', 10000);
             }
             while (!isNumber(appData.moneyDeposit));
         }
