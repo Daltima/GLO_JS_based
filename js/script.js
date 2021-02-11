@@ -167,12 +167,12 @@ let appData = {
         if(appData.deposit){
 
             do { 
-                appData.percentDeposit = prompt('Какой годовой процент?', 10);
+                appData.percentDeposit = +prompt('Какой годовой процент?', 10);
             }
             while (!isNumber(appData.percentDeposit));
 
             do { 
-                appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+                appData.moneyDeposit = +prompt('Какая сумма заложена?', 10000);
             }
             while (!isNumber(appData.moneyDeposit));
         }
