@@ -64,8 +64,12 @@ let appData = {
         budgetMonthValue.value = appData.budgetMonth;
         budgetDayValue.value = appData.budgetDay;
         expensesMonthValue.value = appData.expensesMonth;
-        additionalExpensesValue.value = appData.addExpenses.join(', ');
-        additionalIncomeValue.value = appData.addIncome.join(', ');
+      //   Вывожу строку из элементов массива appData.addExpenses с разделителем ', ',
+     //  где каждый элемент массива начинается с заглавной буквы*/
+        additionalExpensesValue.value = appData.addExpenses.map(n => `${n[0].toUpperCase()}${n.toLowerCase().
+        slice(1)}`).join(', ');
+        additionalIncomeValue.value = appData.addIncome.map(n => `${n[0].toUpperCase()}${n.toLowerCase().
+        slice(1)}`).join(', ');
         targetMonthValue.value = Math.ceil(appData.getTargetMonth());
         periodSelect.addEventListener('input', appData.calcPeriod);
         incomePeriodValue.value = appData.calcPeriod();
@@ -82,7 +86,7 @@ let appData = {
     getExpenses: function(){
         expensesItems.forEach(function(item){
             let itemExpenses = item.querySelector('.expenses-title').value;
-            let cashExpenses = item.querySelector('.expenses-amount').value;
+            let cashExpenses = +item.querySelector('.expenses-amount').value;
             if(itemExpenses !== '' && cashExpenses !== ''){
                 appData.expenses[itemExpenses] = cashExpenses;
             }
@@ -101,7 +105,7 @@ let appData = {
     getIncome: function(){
         incomeItems.forEach(function(item){
             let itemIncome =  item.querySelector('.income-title').value;
-            let cashIncome = item.querySelector('.income-amount').value;
+            let cashIncome = +item.querySelector('.income-amount').value;
             if(itemIncome !== '' && cashIncome !== ''){
                 appData.income[itemIncome] = cashIncome;
             }
@@ -112,7 +116,7 @@ let appData = {
         }
         expensesItems.forEach(function(item){
             let itemExpenses = item.querySelector('.expenses-title').value;
-            let cashExpenses = item.querySelector('.expenses-amount').value;
+            let cashExpenses = +item.querySelector('.expenses-amount').value;
             if(itemExpenses !== '' && cashExpenses !== ''){
                 appData.expenses[itemExpenses] = cashExpenses;
             }
@@ -200,3 +204,5 @@ expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 
 periodSelect.addEventListener('input', appData.period);
+
+console.log(appData);
