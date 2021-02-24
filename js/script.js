@@ -70,12 +70,15 @@ let appData = {
         this.showResult();
 
         this.blocked();
-
-        console.log(this); 
     },
     //Функция блокирования инпутов слева, после нажатия кнопки "Рассчитать"
     blocked: function(){
         document.querySelectorAll('.data input[type=text]').forEach(function(input) {
+            //Блокипуем блок с галочкой "Депозит"
+            depositCheckbox.disabled = true;
+            //Блокируем "плюсы"
+            incomePlus.disabled = true;
+            expensesPlus.disabled = true;
 
             if(!input.classList.contains('period-select')){
                 input.disabled = true;
@@ -93,7 +96,6 @@ let appData = {
         targetMonthValue.value = +Math.ceil(this.getTargetMonth());
         periodSelect.addEventListener('input', this.calcPeriod);
         incomePeriodValue.value = this.calcPeriod();
-        console.log('showResult: ',this);
     },
     addExpensesBlock: function(){
         
@@ -105,15 +107,13 @@ let appData = {
         }
         dataInputs = document.querySelectorAll('.data input');
     },
-     //Использование this невозможно
     getExpenses: function(){
-        expensesItems.forEach(function(item){
+        expensesItems.forEach((item) => {
             let itemExpenses = item.querySelector('.expenses-title').value;
             let cashExpenses = +item.querySelector('.expenses-amount').value;
             if(itemExpenses !== '' && cashExpenses !== ''){
-                appData.expenses[itemExpenses] = cashExpenses;
+                this.expenses[itemExpenses] = cashExpenses;
             }
-            console.log('getExpenses: ', this);
         });
     },
 //После нажатия кнопки "Сбросить", удаляем лишние клоны строк "Обязательные расходы" и возвращаем кнопку +
@@ -166,27 +166,25 @@ let appData = {
             this.incomeMonth += +this.income[key];
             
         }
-        console.log('getIncome: ', this);
     },
     //Возможные расходы
-    getAddExpenses: () => {
+    getAddExpenses: function(){
         let addExpenses = additionalExpensesItem.value.split(',');
-        addExpenses.forEach(function(item){
+        addExpenses.forEach((item) =>{
             item = item.trim();
             if (item !== ''){
-                appData.addExpenses.push(item);
+                this.addExpenses.push(item);
             }
-            console.log('getAddExpenses: ', this);
         });
 
     },
+    //Получаем значения инпутов "Возможный доход"
     getAddIncome: function(){
-        additionalIncomeItem.forEach(function(item){
+        additionalIncomeItem.forEach((item) =>{
             let itemValue = item.value.trim();
             if(itemValue !== ''){
-                appData.addIncome.push(itemValue);
+                this.addIncome.push(itemValue);
             }
-            console.log('getAddIncome: ', this);
         });
     },
     getExpensesMonth: function(){
@@ -194,12 +192,10 @@ let appData = {
     
             this.expensesMonth += +this.expenses[key];
         }
-        console.log('getExpensesMonth: ', this);
     },
     getBudget: function (){
         this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
         this.budgetDay = Math.ceil(this.budgetMonth/30);
-        console.log('getBudget: ', this);
     },
     getStatusIncome: function(){
        
@@ -237,7 +233,7 @@ let appData = {
     period: () => {
         periodAmount.innerText = periodSelect.value;
         incomePeriodValue.value = appData.calcPeriod();
-        console.log('period: ', this);
+        
     },
     //Использование this невозможно
     calcPeriod: () => {
@@ -245,10 +241,10 @@ let appData = {
         
     },
     //Использование this невозможно
-    checkButton: () => {
+    checkButton: function(){ 
         if(salaryAmount.value !== ''){
             appData.start();
-            console.log('checkButton: ', this);
+            
             buttonCancel.style.display = "block";
             buttonStart.style.display = "none";
            
@@ -285,7 +281,9 @@ let appData = {
     //Снимаем галочку в квадрате "Депозит", если она была установлена
         depositCheckbox.checked = false;
         incomePeriodValue.value = 0;
-        
+    //Разблокируем "плюсы"
+        incomePlus.disabled = false;
+        expensesPlus.disabled = false;
     
         
         const inputs = document.querySelectorAll('input');
@@ -307,7 +305,6 @@ let appData = {
         
     buttonStart.style.display = "block";
     buttonCancel.style.display = "none";
-    console.log('reset: ', this);
     },
 };
 
