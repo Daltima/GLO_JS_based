@@ -94,8 +94,8 @@ let appData = {
         additionalIncomeValue.value = this.addIncome.map(n => `${n[0].toUpperCase()}${n.toLowerCase().
         slice(1)}`).join(', ');
         targetMonthValue.value = +Math.ceil(this.getTargetMonth());
-        periodSelect.addEventListener('input', this.calcPeriod);
         incomePeriodValue.value = this.calcPeriod();
+        periodSelect.addEventListener('input', this.calcPeriod);
     },
     addExpensesBlock: function(){
         
@@ -229,21 +229,21 @@ let appData = {
         }
         
     },
-    //Использование this невозможно
-    period: () => {
+    //Функция смены периода накопления
+    period:  function(){    
         periodAmount.innerText = periodSelect.value;
-        incomePeriodValue.value = appData.calcPeriod();
+        incomePeriodValue.value = this.calcPeriod();
+    },
+
+    //Функция рассчёта накоплений за выбранное количество месяцев
+    calcPeriod: function(){
+        return this.budgetMonth * periodSelect.value;
         
     },
-    //Использование this невозможно
-    calcPeriod: () => {
-        return appData.budgetMonth * periodSelect.value;
-        
-    },
-    //Использование this невозможно
+    //Проверка кнопки "Рассчитать" на событие "Клик"
     checkButton: function(){ 
         if(salaryAmount.value !== ''){
-            appData.start();
+            this.start();
             
             buttonCancel.style.display = "block";
             buttonStart.style.display = "none";
@@ -257,22 +257,22 @@ let appData = {
             buttonCancel.style.display = "block";
             buttonStart.style.display = "none";
     },
-    //Использование this невозможно
+    //После клика по кнопке "Сбросить", возвращаем поля и значения в первоначальное состояние.
     reset: function(){
 
     // Очищаем инпуты слева, после нажатия кнопки "Сбросить"
-        appData.income = {};
-        appData.incomeMonth = 0;
-        appData.addIncome = [];
-        appData.expenses = {};
-        appData.addExpenses = [];
-        appData.deposit = false;
-        appData.percentDeposit = 0;
-        appData.moneyDeposit = 0;
-        appData.budget = 0;
-        appData.budgetDay = 0;
-        appData.budgetMonth = 0;
-        appData.expensesMonth = 0;
+        this.income = {};
+        this.incomeMonth = 0;
+        this.addIncome = [];
+        this.expenses = {};
+        this.addExpenses = [];
+        this.deposit = false;
+        this.percentDeposit = 0;
+        this.moneyDeposit = 0;
+        this.budget = 0;
+        this.budgetDay = 0;
+        this.budgetMonth = 0;
+        this.expensesMonth = 0;
        
     //Очищаем поле "Месячный доход"
         salaryAmount.value = '';
@@ -296,9 +296,9 @@ let appData = {
             input.disabled = false;
         });
 //После нажатия кнопки "Сбросить", удаляем лишние клоны строк "Дополнительного дохода" и возвращаем кнопку +    
-     appData.resetIncomeBlock();
+     this.resetIncomeBlock();
 //После нажатия кнопки "Сбросить", удаляем лишние клоны строк "Обязательные расходы" и возвращаем кнопку +   
-     appData.resetExpensesBlock();
+     this.resetExpensesBlock();
 //Возвращаем ползунок в исходное положение
      periodSelect.value = 1;
      periodAmount.innerText = 1;
@@ -308,13 +308,13 @@ let appData = {
     },
 };
 
-buttonStart.addEventListener('click', appData.checkButton);
+buttonStart.addEventListener('click', appData.checkButton.bind(appData));
 
 //Клик по кнопке "Сбросить"
-buttonCancel.addEventListener('click', appData.reset);
+buttonCancel.addEventListener('click', appData.reset.bind(appData));
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 
-periodSelect.addEventListener('input', appData.period);
+periodSelect.addEventListener('input', appData.period.bind(appData));
