@@ -24,13 +24,13 @@ const income = 'фриланс',
     'такси, коммунальные, питание, обучение'),
     deposit = confirm('Есть ли у вас депозит в банке?'),
     mission = 150000,
-    period = 12,
+    period = 12;
     
-    showTypeOf = function(data) {
+const showTypeOf = function(data) {
         console.log(data, typeof(data));
-    },
+};
 
-    getExpensesMonth = function() {
+const getExpensesMonth = function() {
 
         let sumExpensesMonth = 0,
             sum = 0;
@@ -49,21 +49,21 @@ const income = 'фриланс',
         }
     
         return sumExpensesMonth;
-    },
-    expensesAmount = getExpensesMonth(),
+};
+const expensesAmount = getExpensesMonth();
 
-    getAccumulatedMonth = function() {
+const getAccumulatedMonth = function() {
         return money - expensesAmount;
-    },
-    accumulatedMonth = getAccumulatedMonth(),
+};
+const accumulatedMonth = getAccumulatedMonth();
 
-    getTargetMonth = function() {
+const getTargetMonth = function() {
 
         return Math.ceil(mission/accumulatedMonth);
-    },
-    budgetDay = Math.floor(accumulatedMonth/30),
+};
+const budgetDay = Math.floor(accumulatedMonth/30);
 
-    getStatusIncome = function(){
+const getStatusIncome = function(){
     
         if(budgetDay >= 1200) {
             return('У Вас высокий уровень дохода');
@@ -74,12 +74,10 @@ const income = 'фриланс',
         } else {
             return ('Что-то пошло не так');
         }
-    };
+}; 
 
-
-
-if (getTargetMonth >= 0) {
-    console.log('Цель будет достигнута за ' + getTargetMonth + ' месяцев');
+if (getTargetMonth() >= 0) {
+    console.log('Цель будет достигнута за ' + getTargetMonth() + ' месяцев');
 } else {
     console.log('Цель не будет достигнута');
 }
