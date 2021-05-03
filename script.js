@@ -99,4 +99,4 @@ for(let key in appData) {
 }
 
 console.log(appData.expenses);
-console.log(appData.addIncome);
+console.log(appData.income);
