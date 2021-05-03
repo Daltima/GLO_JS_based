@@ -53,7 +53,7 @@ let appData = {
         }
     },
     getBudget: function (){
-        return money - appData.expensesMonth;
+        return appData.budget - appData.expensesMonth;
     },
     getStatusIncome: function(){
     
@@ -74,6 +74,7 @@ let appData = {
 };
 
 appData.asking();
+
 appData.getExpensesMonth();
 
 console.log('Расходы за месяц: ' + appData.expensesMonth);
@@ -96,3 +97,6 @@ for(let key in appData) {
 
         console.log(key + ':' + appData[key]);
 }
+
+console.log(appData.expenses);
+console.log(appData.addIncome);
