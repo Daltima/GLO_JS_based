@@ -10,14 +10,10 @@ class First{
     
 }
 
-const firstPhrase = new First();
-
-
-        
 class Second extends First{          
     
         hello() {    
-            firstPhrase.hello();   
+            super.hello();   
             console.log("А я наследуемый метод!");
         }
     
