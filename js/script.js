@@ -244,23 +244,7 @@ class AppData {
         return this.budgetMonth * periodSelect.value;
         
     }
-    // getInfoDeposit() {
-    
-    //     this.deposit = confirm('Есть ли у вас депозит в банке?');
-    //     if(this.deposit){
-    
-    //         do { 
-    //             this.percentDeposit = prompt('Какой годовой процент?', 10);
-    //         }
-    //         while (!isNumber(this.percentDeposit));
-    
-    //         do { 
-    //             this.moneyDeposit = prompt('Какая сумма заложена?', 10000);
-    //         }
-    //         while (!isNumber(this.moneyDeposit));
-    //     }
-        
-    // }
+   
     getInfoDeposit() {
         if(this.deposit) {
             this.percentDeposit = depositPercent.value;//сохраняем процент по депозиту
@@ -289,6 +273,7 @@ class AppData {
         } else {
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
+            depositPercent.style.display = 'none';
             depositBank.value = '';
             depositAmount.value = '';
             this.deposit = false;
@@ -302,21 +287,17 @@ class AppData {
         if(salaryAmount.value === ''){
 
             alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
-        } else if(depositCheckbox.checked && depositPercent.value === '' || depositPercent.value < 0 || 
-            depositPercent.value > 100 || !isNumber(depositPercent.value)) {
-            console.log(depositPercent.value);
-            alert('Введите корректное значение в поле проценты \n (значение должно быть от 0 до 100)');
-        }
-        
-        else  {
-                console.log(depositPercent.value);
-                this.start();
-                
-                depositPercent.style.display = 'none';
-                depositPercent.value = '';
-                buttonCancel.style.display = "block";
-                buttonStart.style.display = "none";
-            } 
+        } else if(!isNumber(+salaryAmount.value)){
+            alert('Ошибка, в поле "Месячный доход" необходимо ввести число!');
+        } else  {
+            
+            this.start();
+            
+            depositPercent.style.display = 'none';
+            depositPercent.value = '';
+            buttonCancel.style.display = "block";
+            buttonStart.style.display = "none";
+        } 
        
     }
     changeButton() {
@@ -382,6 +363,15 @@ class AppData {
         depositBank.value = '';
         depositAmount.value = '';
     }
+    //Функция проверки корректности заполнения поля "Процент"
+    onChange(e) {
+        const target = e.target.value;
+        if(!isNumber(+target) || target < 0 || target > 100) {
+            alert('Введите корректное значение в поле проценты \n (значение должно быть от 0 до 100)');
+            return target.slice(0, -1);
+        }
+        return target;
+    }
     
     eventListeners() {
     
@@ -397,6 +387,10 @@ class AppData {
         periodSelect.addEventListener('input', appData.period.bind(appData));
         //наличие "галочки" в депозит боксе
         depositCheckbox.addEventListener('change', this.depositHandler.bind(this));
+        //Проверяем является ли значение инпута "Процент" значением от 0 до 100 
+        depositPercent.addEventListener('input', (e) => {
+            depositPercent.value = this.onChange(e);
+        });
     
     }
 }
